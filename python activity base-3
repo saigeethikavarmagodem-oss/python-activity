@@ -1,0 +1,69 @@
+2. Hospital Billing and Patient Classification:
+
+
+
+Algorithm
+
+1. Start.
+2. Enter consultation, diagnostic, and treatment charges.
+3. Check that the charges are not negative.
+4. Calculate the total bill.
+5. Apply a 10% concession if the total is at least ₹5,000.
+6. Classify the patient based on the final bill.
+7. Display the total and final bill.
+8. Stop.
+
+
+
+Flowchart
+
+Start
+Enter hospital charges
+Validate charges and calculate total
+Apply concession if eligible
+Classify patient and display bill
+Stop
+
+
+
+Python code
+
+
+consultation = float(input("Enter consultation charge: "))
+diagnostic = float(input("Enter diagnostic charge: "))
+treatment = float(input("Enter treatment charge: "))
+
+if consultation < 0 or diagnostic < 0 or treatment < 0:
+    print("Invalid charges")
+else:
+    total = consultation + diagnostic + treatment
+
+    if total >= 5000:
+        discount = total * 0.10
+    else:
+        discount = 0
+
+    final_bill = total - discount
+
+    if final_bill >= 10000:
+        category = "High-cost patient"
+    elif final_bill >= 5000:
+        category = "Medium-cost patient"
+    else:
+        category = "Low-cost patient"
+
+    print("Total Bill:", total)
+    print("Concession:", discount)
+    print("Final Bill:", final_bill)
+    print("Patient Category:", category)
+
+
+output
+
+Enter consultation charge: 500
+Enter diagnostic charge: 1500
+Enter treatment charge: 4000
+Total Bill: 6000.0
+Concession: 600.0
+Final Bill: 5400.0
+Patient Category: Medium-cost patient
