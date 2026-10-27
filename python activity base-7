@@ -1,0 +1,66 @@
+Retail Billing with Multiple Discount Rules:
+
+
+
+Algorithm
+
+1. Enter product price, quantity, and category.
+2. Calculate the subtotal.
+3. Apply a 10% discount when the subtotal is at least ₹2,000.
+4. Limit the discount to ₹500.
+5. Apply category-specific tax.
+6. Display the subtotal, discount, tax, and final bill.
+
+
+
+Flowchart
+
+Start
+Input price, quantity and category
+Calculate subtotal and discount
+Apply category tax
+Display final invoice
+Stop
+
+
+
+Python code
+
+
+price = float(input("Enter product price: "))
+quantity = int(input("Enter quantity: "))
+category = input("Enter category (A or B): ")
+
+if price < 0 or quantity <= 0 or category not in ["A", "B"]:
+    print("Invalid input")
+else:
+    subtotal = price * quantity
+
+    discount = subtotal * 0.10 if subtotal >= 2000 else 0
+    discount = min(discount, 500)
+
+    amount = subtotal - discount
+
+    if category == "A":
+        tax = amount * 0.05
+    else:
+        tax = amount * 0.12
+
+    total = amount + tax
+
+    print("Subtotal:", subtotal)
+    print("Discount:", discount)
+    print("Tax:", round(tax, 2))
+    print("Final Bill:", round(total, 2))
+
+
+
+output
+
+Enter product price: 1000
+Enter quantity: 3
+Enter category (A or B): A
+Subtotal: 3000.0
+Discount: 300.0
+Tax: 135.0
+Final Bill: 2835.0
