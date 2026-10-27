@@ -1,0 +1,59 @@
+3. Employee Payroll and Deduction Analysis:
+
+
+Algorithm
+
+1. Enter basic salary, allowances, overtime pay, and incentives.
+2. Calculate gross salary.
+3. Calculate deductions: 5% on the first ₹20,000, 10% on the next ₹20,000, and 15% on the remaining amount.
+4. Calculate net salary.
+5. Display the salary statement.
+
+
+Flowchart
+
+Start
+Input salary, allowances, overtime and incentives
+Calculate gross salary
+Calculate progressive deductions
+Calculate and display net salary
+Stop
+
+Python code
+
+basic = float(input("Enter basic salary: "))
+allowances = float(input("Enter allowances: "))
+overtime = float(input("Enter overtime pay: "))
+incentives = float(input("Enter incentives: "))
+
+gross = basic + allowances + overtime + incentives
+
+if gross < 0:
+    print("Invalid salary")
+else:
+    if gross <= 20000:
+        deduction = gross * 0.05
+    elif gross <= 40000:
+        deduction = 1000 + (gross - 20000) * 0.10
+    else:
+        deduction = 3000 + (gross - 40000) * 0.15
+
+    net = gross - deduction
+
+    print("Basic Salary:", basic)
+    print("Gross Salary:", gross)
+    print("Deduction:", deduction)
+    print("Net Salary:", net)
+
+
+output
+
+
+Enter basic salary: 25000
+Enter allowances: 5000
+Enter overtime pay: 2000
+Enter incentives: 1000
+Basic Salary: 25000.0
+Gross Salary: 33000.0
+Deduction: 2300.0
+Net Salary: 30700.0
