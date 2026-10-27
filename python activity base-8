@@ -1,0 +1,76 @@
+Manufacturing Cost and Profitability Analysis:
+
+
+
+Algorithm
+
+1. Enter material cost, labour cost, machine cost, wastage percentage, and selling price per product.
+2. Calculate wastage cost.
+3. Calculate total production cost.
+4. Calculate total selling revenue.
+5. Calculate profit and profit percentage.
+6. Check whether the profit target is achieved.
+7. Display the result.
+
+
+
+Flowchart
+
+Start
+Enter production costs, quantity and selling price
+Calculate wastage and total cost
+Calculate revenue and profit
+Check profit target and display result
+Stop
+
+
+
+Python code
+
+
+material = float(input("Enter material cost per product: "))
+labour = float(input("Enter labour cost per product: "))
+machine = float(input("Enter machine cost per product: "))
+wastage_percent = float(input("Enter wastage percentage: "))
+quantity = int(input("Enter quantity produced: "))
+selling_price = float(input("Enter selling price per product: "))
+target = float(input("Enter target profit percentage: "))
+
+if (material < 0 or labour < 0 or machine < 0
+        or quantity <= 0 or selling_price < 0
+        or wastage_percent < 0 or wastage_percent > 100
+        or target < 0):
+    print("Invalid input")
+else:
+    wastage = material * wastage_percent / 100
+    cost_per_product = material + labour + machine + wastage
+    total_cost = cost_per_product * quantity
+    revenue = selling_price * quantity
+    profit = revenue - total_cost
+    profit_percent = profit / total_cost * 100 if total_cost > 0 else 0
+
+    print("Total Production Cost:", total_cost)
+    print("Total Revenue:", revenue)
+    print("Profit:", profit)
+    print("Profit Percentage:", round(profit_percent, 2))
+
+    if profit_percent >= target:
+        print("Profit target achieved")
+    else:
+        print("Profit target not achieved")
+
+output
+
+Enter material cost per product: 100
+Enter labour cost per product: 30
+Enter machine cost per product: 20
+Enter wastage percentage: 10
+Enter quantity produced: 100
+Enter selling price per product: 200
+Enter target profit percentage: 20
+Total Production Cost: 16500.0
+Total Revenue: 20000.0
+Profit: 3500.0
+Profit Percentage: 21.21
+Profit target achieved
+
