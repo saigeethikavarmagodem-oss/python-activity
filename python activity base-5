@@ -1,0 +1,66 @@
+Multi-Plan Telecommunications Cost Optimization:
+
+
+Algorithm
+
+1. Enter monthly usage, budget, and validity required.
+2. Enter the cost, included usage, and validity of three mobile plans.
+3. Calculate extra usage charges for each plan.
+4. Check whether the plan meets the budget and validity requirements.
+5. Select the cheapest eligible plan.
+6. Display the plan or report that no plan is suitable.
+
+
+
+Flowchart
+Start
+Input usage, budget and validity
+Calculate the total cost of each plan
+Check budget and validity
+Select the cheapest suitable plan
+Stop
+
+
+
+Python code
+
+
+usage = float(input("Enter monthly usage in GB: "))
+budget = float(input("Enter budget: "))
+days = int(input("Enter required validity in days: "))
+
+plans = [
+    ["Plan A", 199, 20, 28],
+    ["Plan B", 299, 40, 56],
+    ["Plan C", 399, 60, 84]
+]
+
+best_plan = ""
+best_cost = float("inf")
+
+for plan in plans:
+    name, price, included, validity = plan
+
+    extra = max(0, usage - included)
+    cost = price + extra * 10
+
+    if cost <= budget and validity >= days:
+        if cost < best_cost:
+            best_cost = cost
+            best_plan = name
+
+if best_plan == "":
+    print("No suitable plan found")
+else:
+    print("Best Plan:", best_plan)
+    print("Total Cost:", best_cost)
+
+
+
+output
+
+Enter monthly usage in GB: 30
+Enter budget: 350
+Enter required validity in days: 28
+Best Plan: Plan B
+Total Cost: 299
