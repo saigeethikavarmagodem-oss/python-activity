@@ -1,0 +1,81 @@
+Multi-Currency Travel Budget Analysis:
+
+
+
+Algorithm
+
+1. Enter the travel budget in Indian rupees.
+2. Enter expenses in foreign currency and the exchange rate.
+3. Calculate each expense in rupees.
+4. Add a 2% currency conversion fee.
+5. Calculate total spending and remaining budget.
+6. Identify the largest expense category.
+7. Display the result.
+
+
+
+Flowchart
+
+Start
+Input budget, expenses and exchange rate
+Convert expenses to rupees
+Add conversion fees and total expenses
+Compare budget and identify largest expense
+Stop
+
+
+
+Python code
+
+
+budget = float(input("Enter budget in rupees: "))
+rate = float(input("Enter exchange rate (INR per foreign unit): "))
+
+if budget < 0 or rate <= 0:
+    print("Invalid input")
+else:
+    expenses = {}
+    total = 0
+
+    for i in range(3):
+        category = input("Enter expense category: ")
+        amount = float(input("Enter expense in foreign currency: "))
+
+        if amount < 0:
+            print("Invalid expense")
+            break
+
+        rupees = amount * rate
+        fee = rupees * 0.02
+        cost = rupees + fee
+
+        expenses[category] = cost
+        total = total + cost
+    else:
+        print("Total Expenses:", round(total, 2))
+        print("Remaining Budget:", round(budget - total, 2))
+
+        largest = max(expenses, key=expenses.get)
+        print("Largest Expense:", largest)
+
+        if total > budget:
+            print("Budget exceeded")
+        else:
+            print("Within budget")
+
+
+
+output
+
+Enter budget in rupees: 50000
+Enter exchange rate (INR per foreign unit): 90
+Enter expense category: Hotel
+Enter expense in foreign currency: 200
+Enter expense category: Food
+Enter expense in foreign currency: 100
+Enter expense category: Transport
+Enter expense in foreign currency: 50
+Total Expenses: 32130.0
+Remaining Budget: 17870.0
+Largest Expense: Hotel
+Within budget
