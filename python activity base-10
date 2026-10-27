@@ -1,0 +1,82 @@
+Campus Event Financial Planning:
+
+
+
+Algorithm
+
+1. Enter venue, equipment, catering per participant, transport, certificate costs, and sponsorship.
+2. Calculate the total fixed cost.
+3. Calculate the total event cost for the expected participants.
+4. Subtract sponsorship.
+5. Calculate the contribution per participant.
+6. Calculate the minimum number of registrations required to break even.
+7. Display the financial details.
+
+
+
+Flowchart
+
+Start
+Input event costs, participants and sponsorship
+Calculate total cost and funding gap
+Calculate participant fee and break-even count
+Display financial plan
+Stop
+
+
+
+
+Python code
+
+
+venue = float(input("Enter venue cost: "))
+equipment = float(input("Enter equipment cost: "))
+transport = float(input("Enter transport cost: "))
+catering = float(input("Enter catering cost per participant: "))
+certificate = float(input("Enter certificate cost per participant: "))
+participants = int(input("Enter expected participants: "))
+sponsorship = float(input("Enter sponsorship amount: "))
+fee = float(input("Enter registration fee per participant: "))
+
+if (min(venue, equipment, transport, catering, certificate,
+        sponsorship, fee) < 0 or participants <= 0):
+    print("Invalid input")
+else:
+    fixed_cost = venue + equipment + transport
+    variable_cost = catering + certificate
+    total_cost = fixed_cost + variable_cost * participants
+    shortfall = max(0, total_cost - sponsorship)
+    break_even = max(0, int((fixed_cost - sponsorship
+                             + variable_cost + fee - 1)
+                            // (fee - variable_cost))) if fee > variable_cost else -1
+
+    print("Total Event Cost:", total_cost)
+    print("Sponsorship:", sponsorship)
+    print("Funding Shortfall:", shortfall)
+
+    if fee > variable_cost:
+        required = max(0, int((fixed_cost - sponsorship
+                               + (fee - variable_cost) - 1)
+                              // (fee - variable_cost)))
+        print("Minimum Registrations to Break Even:", required)
+    else:
+        print("Break-even is not possible at this fee")
+
+    print("Expected Registration Income:", fee * participants)
+
+
+output
+
+Enter venue cost: 10000
+Enter equipment cost: 5000
+Enter transport cost: 3000
+Enter catering cost per participant: 200
+Enter certificate cost per participant: 50
+Enter expected participants: 100
+Enter sponsorship amount: 10000
+Enter registration fee per participant: 300
+Total Event Cost: 43000.0
+Sponsorship: 10000.0
+Funding Shortfall: 33000.0
+Minimum Registrations to Break Even: 33
+Expected Registration Income: 30000.0
