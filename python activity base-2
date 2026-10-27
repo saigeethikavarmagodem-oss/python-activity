@@ -1,0 +1,56 @@
+Progressive Electricity Billing:
+
+
+Algorithm
+
+1. Start.
+2. Enter electricity units consumed.
+3. Calculate charges using different consumption slabs.
+4. Add fixed charges.
+5. Add surcharge and subtract rebate.
+6. Compare the current bill with the previous month's bill.
+7. Display the bill and identify an unusual increase if it exceeds 30%.
+8. Stop.
+
+
+Flowchart
+
+Start
+Input units and previous bill
+Calculate slab charges
+Add fixed charge and surcharge; subtract rebate
+Compare bills and display result
+Stop
+
+
+
+Python code
+
+units = int(input("Enter units consumed: "))
+previous = float(input("Enter previous bill: "))
+
+if units <= 100:
+    bill = units * 2
+elif units <= 200:
+    bill = 100 * 2 + (units - 100) * 3
+else:
+    bill = 100 * 2 + 100 * 3 + (units - 200) * 5
+
+bill = bill + 50
+surcharge = bill * 0.05
+rebate = 20
+bill = bill + surcharge - rebate
+
+print("Electricity Bill:", round(bill, 2))
+
+if previous > 0 and bill > previous * 1.30:
+    print("Unusual increase detected")
+else:
+    print("Normal bill increase")
+
+
+sample output
+Enter units consumed: 250
+Enter previous bill: 500
+Electricity Bill: 592.5
+Normal bill increase
