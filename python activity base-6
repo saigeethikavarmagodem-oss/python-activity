@@ -1,0 +1,63 @@
+Railway Fare and Reservation Calculator:
+
+
+
+Algorithm
+
+1. Enter travel distance, travel class, passenger age, and cancellation choice.
+2. Calculate fare based on distance.
+3. Apply the selected class multiplier.
+4. Apply a 50% concession for passengers aged 60 or above.
+5. Add reservation fees.
+6. If cancelled, deduct the specified cancellation penalty.
+7. Display the final amount.
+
+
+
+Flowchart
+
+Start
+Enter distance, class, age and cancellation choice
+Calculate distance-based fare and class fare
+Apply age concession and reservation fee
+Apply cancellation penalty if required
+Stop
+
+
+
+Python code
+
+
+distance = int(input("Enter distance in km: "))
+age = int(input("Enter passenger age: "))
+travel_class = input("Enter class (1 or 2): ")
+cancel = input("Cancel ticket? (yes/no): ")
+
+if distance <= 0 or age < 0 or travel_class not in ["1", "2"]:
+    print("Invalid input")
+else:
+    fare = distance * 2
+
+    if travel_class == "2":
+        fare = fare * 1.5
+
+    if age >= 60:
+        fare = fare * 0.5
+
+    fare = fare + 30
+
+    if cancel == "yes":
+        penalty = fare * 0.20
+        fare = fare - penalty
+
+    print("Final Fare:", round(fare, 2))
+
+
+
+output
+
+Enter distance in km: 200
+Enter passenger age: 65
+Enter class (1 or 2): 1
+Cancel ticket? (yes/no): no
+Final Fare: 230.0
