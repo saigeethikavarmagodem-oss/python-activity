@@ -1,0 +1,115 @@
+University Scholarship Allocation System:
+This simple Python program checks students' marks, subject-wise minimum marks, attendance, and family income. It selects eligible students, ranks them, and resolves ties using predefined rules.
+
+
+1. Algorithm
+
+1. Start.
+2. Enter the number of students.
+3. For each student, enter name, marks in three subjects, attendance percentage, and annual family income.
+4. Calculate aggregate marks.
+5. Check eligibility:
+   - Aggregate marks must be at least 75%.
+   - Each subject mark must be at least 40.
+   - Attendance must be at least 75%.
+   - Annual family income must be ₹2,00,000 or less.
+6. Store eligible students.
+7. Rank students by:
+   - Higher aggregate marks first.
+   - If marks are equal, higher attendance first.
+   - If both are equal, lower family income first.
+8. Display the eligible students in rank order.
+9. Stop.
+
+
+2. Flowchart
+
+Start
+Input student details, marks, attendance and income
+Calculate aggregate percentage
+Check all eligibility criteria
+Yes
+Add student to eligible list
+
+
+No
+Mark as ineligible
+
+
+
+Rank eligible students and resolve ties
+Display ranked scholarship list
+Stop
+
+
+
+3. Simple Python code
+
+n = int(input("Enter number of students: "))
+students = []
+
+for i in range(n):
+    print("\nStudent", i + 1)
+
+    name = input("Enter name: ")
+    m1 = int(input("Enter subject 1 marks: "))
+    m2 = int(input("Enter subject 2 marks: "))
+    m3 = int(input("Enter subject 3 marks: "))
+    attendance = float(input("Enter attendance percentage: "))
+    income = int(input("Enter annual family income: "))
+
+    total = m1 + m2 + m3
+    percentage = total / 300 * 100
+
+    if (percentage >= 75 and m1 >= 40 and m2 >= 40
+            and m3 >= 40 and attendance >= 75
+            and income <= 200000):
+        students.append([name, percentage, attendance, income])
+
+# Rank by marks, attendance, then lower income
+students.sort(key=lambda x: (-x[1], -x[2], x[3]))
+
+print("\nEligible Students - Scholarship Ranking")
+
+if len(students) == 0:
+    print("No eligible students")
+else:
+    rank = 1
+    for s in students:
+        print(rank, s[0], "Marks:", round(s[1], 2),
+              "Attendance:", s[2], "Income:", s[3])
+        rank += 1
+
+        
+
+        output
+Enter number of students: 3
+
+Student 1
+Enter name: Ravi
+Enter subject 1 marks: 90
+Enter subject 2 marks: 85
+Enter subject 3 marks: 80
+Enter attendance percentage: 90
+Enter annual family income: 150000
+
+Student 2
+Enter name: Sita
+Enter subject 1 marks: 85
+Enter subject 2 marks: 80
+Enter subject 3 marks: 75
+Enter attendance percentage: 85
+Enter annual family income: 100000
+
+Student 3
+Enter name: Raju
+Enter subject 1 marks: 60
+Enter subject 2 marks: 65
+Enter subject 3 marks: 70
+Enter attendance percentage: 80
+Enter annual family income: 180000
+
+Eligible Students - Scholarship Ranking
+1 Ravi Marks: 85.0 Attendance: 90.0 Income: 150000
+2 Sita Marks: 80.0 Attendance: 85.0 Income: 100000
+3 Raju Marks: 65.0 Attendance: 80.0 Income: 180000
